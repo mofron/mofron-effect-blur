@@ -9,6 +9,17 @@
  */
 mofron.effect.Blur = class extends mofron.Effect {
     
+    constructor (prm_opt) {
+        try {
+            super();
+            this.name('Blur');
+            this.prmOpt(prm_opt);
+        } catch (e) {
+            console.error(e.stack);
+            throw e;
+        }
+    }
+    
     /**
      * enalbe blur effect
      */
