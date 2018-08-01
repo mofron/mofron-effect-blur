@@ -9,11 +9,12 @@
  */
 mofron.effect.Blur = class extends mofron.Effect {
     
-    constructor (prm_opt) {
+    constructor (po) {
         try {
             super();
             this.name('Blur');
-            this.prmOpt(prm_opt);
+            this.prmMap('value');
+            this.prmOpt(po);
         } catch (e) {
             console.error(e.stack);
             throw e;
@@ -25,7 +26,7 @@ mofron.effect.Blur = class extends mofron.Effect {
      */
     enable (tgt) {
         try {
-            this.target().style({
+            tgt.style({
                 'filter' : 'blur('+ this.value() +'px)'
             });
         } catch (e) {
@@ -39,7 +40,7 @@ mofron.effect.Blur = class extends mofron.Effect {
      */
     disable (tgt) {
         try {
-            this.target().style({
+            tgt.style({
                 'filter' : 'blur(0px)'
             });
         } catch (e) {
@@ -53,7 +54,7 @@ mofron.effect.Blur = class extends mofron.Effect {
             if (undefined === val) {
                 return (undefined === this.m_value) ? 10 : this.m_value;
             }
-            if (('number' !== typeof val) || (0 > val)) {
+            if ('number' !== typeof val) {
                 throw new Error('invalid parameter');
             }
             this.m_value = val;
