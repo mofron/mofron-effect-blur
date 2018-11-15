@@ -2,13 +2,18 @@
  * @file mofron-effect-blur/index.js
  * @author simpart
  */
-
+const mf = require('mofron');
 /**
  * @class Blur
  * @brief blur effect class
  */
-mofron.effect.Blur = class extends mofron.Effect {
-    
+mf.effect.Blur = class extends mf.Effect {
+    /**
+     * initialize blur effect
+     *
+     * @param p1 (string) blur size (css value)
+     * @param p1 (object) effect option
+     */
     constructor (po) {
         try {
             super();
@@ -23,11 +28,13 @@ mofron.effect.Blur = class extends mofron.Effect {
     
     /**
      * enalbe blur effect
+     * 
+     * @note private method
      */
     enable (tgt) {
         try {
             tgt.style({
-                'filter' : 'blur('+ this.value() +'px)'
+                'filter' : 'blur('+ this.value().toString() + ')'
             });
         } catch (e) {
             console.error(e.stack);
@@ -37,31 +44,34 @@ mofron.effect.Blur = class extends mofron.Effect {
     
     /**
      * disable blur effect
+     *
+     * @note private method
      */
     disable (tgt) {
-        try {
-            tgt.style({
-                'filter' : 'blur(0px)'
-            });
-        } catch (e) {
+        try { tgt.style({ 'filter' : null }); } catch (e) {
             console.error(e.stack);
             throw e;
         }
     }
     
+    /**
+     * blur size setter/getter
+     * 
+     * @param p1 (string) blur size (css value)
+     * @return (Size) size object
+     */
     value (val) {
         try {
-            if (undefined === val) {
-                return (undefined === this.m_value) ? 10 : this.m_value;
-            }
-            if ('number' !== typeof val) {
-                throw new Error('invalid parameter');
-            }
-            this.m_value = val;
+            return this.member(
+                'value', 
+                ['Size'],
+                (undefined !== val) ? mf.func.getSize(val) : val
+            );
         } catch (e) {
             console.error(e.stack);
             throw e;
         }
     }
 }
-module.exports = mofron.effect.Blur;
+module.exports = mf.effect.Blur;
+/* end of file */
