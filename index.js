@@ -31,24 +31,12 @@ mf.effect.Blur = class extends mf.Effect {
      * 
      * @note private method
      */
-    enable (tgt) {
+    contents (tgt) {
         try {
             tgt.style({
                 'filter' : 'blur('+ this.value().toString() + ')'
             });
         } catch (e) {
-            console.error(e.stack);
-            throw e;
-        }
-    }
-    
-    /**
-     * disable blur effect
-     *
-     * @note private method
-     */
-    disable (tgt) {
-        try { tgt.style({ 'filter' : null }); } catch (e) {
             console.error(e.stack);
             throw e;
         }
