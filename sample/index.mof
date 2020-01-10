@@ -1,0 +1,6 @@
+<require>
+    <tag load="mofron-comp-text">Text</tag>
+    <tag load="mofron-effect-blur">Blur</tag>
+</require>
+
+<Text effect=Blur("0.01rem")>Blur Effect</Text>

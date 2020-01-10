@@ -11,6 +11,16 @@ this effect makes the component to blurring.
 npm install mofron mofron-effect-blur
 ```
 
+# Sample
+```html
+<require>
+    <tag load="mofron-comp-text">Text</tag>
+    <tag load="mofron-effect-blur">Blur</tag>
+</require>
+
+<Text effect=Blur("0.01rem")>Blur Effect</Text>
+```
+
 # Parameter
 
 | Short<br>Form | Parameter Name | Type | Description |
