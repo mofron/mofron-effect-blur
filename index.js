@@ -1,25 +1,30 @@
 /**
  * @file mofron-effect-blur/index.js
- * @author simpart
+ * @brief blur effect for mofron
+ *        this effect makes the component to blurring.
+ * @license MIT
  */
-const mf = require('mofron');
-/**
- * @class Blur
- * @brief blur effect class
- */
-mf.effect.Blur = class extends mf.Effect {
+
+module.exports = class extends mofron.class.Effect {
     /**
      * initialize blur effect
      *
-     * @param p1 (string) blur size (css value)
-     * @param p1 (object) effect option
+     * @param (mixed) 'value' parameter
+     *                key-value: effect config
+     * @short value
+     * @type private
      */
-    constructor (po) {
+    constructor (p1) {
         try {
             super();
             this.name('Blur');
-            this.prmMap('value');
-            this.prmOpt(po);
+            this.shortForm('value');
+            /* init config */
+	    this.confmng().add("value", { type: "size", init: "0.05rem" });
+	    /* set config */
+	    if (0 < arguments.length) {
+                this.config(p1);
+	    }
         } catch (e) {
             console.error(e.stack);
             throw e;
@@ -29,13 +34,12 @@ mf.effect.Blur = class extends mf.Effect {
     /**
      * enalbe blur effect
      * 
-     * @note private method
+     * @param (component) effect target component
+     * @type private
      */
     contents (tgt) {
         try {
-            tgt.style({
-                'filter' : 'blur('+ this.value().toString() + ')'
-            });
+            tgt.style({ 'filter' : 'blur('+ this.value() + ')' });
         } catch (e) {
             console.error(e.stack);
             throw e;
@@ -45,21 +49,17 @@ mf.effect.Blur = class extends mf.Effect {
     /**
      * blur size setter/getter
      * 
-     * @param p1 (string) blur size (css value)
-     * @return (Size) size object
+     * @param (string) blur size (css value)
+     * @return (string) blur size
+     * @type parameter
      */
-    value (val) {
+    value (prm) {
         try {
-            return this.member(
-                'value', 
-                ['Size'],
-                (undefined !== val) ? mf.func.getSize(val) : val
-            );
+	    return this.confmng("value", prm);
         } catch (e) {
             console.error(e.stack);
             throw e;
         }
     }
 }
-module.exports = mf.effect.Blur;
 /* end of file */
