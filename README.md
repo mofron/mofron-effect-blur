@@ -13,10 +13,10 @@ npm install mofron mofron-effect-blur
 
 # Sample
 ```html
-<require>
+<setting>
     <tag load="mofron-comp-text">Text</tag>
     <tag load="mofron-effect-blur">Blur</tag>
-</require>
+</setting>
 
 <Text effect=Blur("0.01rem")>Blur Effect</Text>
 ```

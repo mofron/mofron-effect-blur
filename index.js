@@ -17,8 +17,11 @@ module.exports = class extends mofron.class.Effect {
     constructor (p1) {
         try {
             super();
-            this.name('Blur');
+            this.modname('Blur');
             this.shortForm('value');
+            
+            this.transition("filter");
+
             /* init config */
 	    this.confmng().add("value", { type: "size", init: "0.05rem" });
 	    /* set config */

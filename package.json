@@ -1,6 +1,6 @@
 {
   "name": "mofron-effect-blur",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "blur effect for mofron",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/mofron/mofron-effect-blur.git"
   },
   "keywords": [
-    "front-end"
+    "front-end","mofron"
   ],
   "author": "simparts",
   "license": "MIT",
